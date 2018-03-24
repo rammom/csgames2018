@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Program = require('../programming');
+var moment = require('moment');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -9,8 +10,16 @@ router.get('/', function(req, res, next) {
 router.get('/providerPage/:ID', function (req, res, next) {
   var newAssets = [];
   Program.assets.forEach(function(asset){
-    if (asset.providerId == req.params.ID){
-      newAssets.push(asset);
+    if (asset.providerId == req.params.ID){      
+      let currentDate = new Date().toJSON();
+      if (moment(currentDate).isAfter(asset.licensingWindow.start) && moment(currentDate).isBefore(asset.licensingWindow.end)){
+        asset.able = true;
+      }
+      else{
+        asset.able = false;
+      }
+      /* */
+      newAssets.push(asset);      
     }
   });
   var prov;
