@@ -48,8 +48,8 @@ router.post('/search', function(req,res,next){
     var pushed = false;
     for (var j = 0 ; j < Program.providers.length; j++){
       var provider = Program.providers.length;
-      if (provider.id == assets.providerId){
-        if (provider.name.toUpperCase().includes(query.toUpperCase)){
+      if (provider.id == asset.providerId){
+        if (provider.name.toUpperCase().includes(query.toUpperCase())){
           newAssets.push(asset);
           pushed = true;
           break;
@@ -57,13 +57,15 @@ router.post('/search', function(req,res,next){
       }
     }
     if (pushed){
+      pushed = false;
       continue;
     }
-    if (asset.title.toUpperCase() == query.toUpperCase()){
+    if (asset.title.toUpperCase().includes(query.toUpperCase())){
       newAssets.push(asset);
       continue;
     }
   }
+  console.log(newAssets);
   res.render('searchPage', {assets: newAssets, query: query});
 });
 
