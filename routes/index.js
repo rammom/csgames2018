@@ -11,7 +11,7 @@ router.get('/providerPage/:ID', function (req, res, next) {
   var newAssets = [];
   Program.assets.forEach(function(asset){
     if (asset.providerId == req.params.ID){      
-      let currentDate = new Date().toJSON();
+      var currentDate = new Date().toJSON();
       if (moment(currentDate).isAfter(asset.licensingWindow.start) && moment(currentDate).isBefore(asset.licensingWindow.end)){
         asset.able = true;
       }
