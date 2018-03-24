@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+    <%- include('partials/head') %>
+
+
+<body>
+
+    <%- include('partials/nav') %>    
+
+    <br>
+    <br>
+    <br>
+
+    <div class="container">
+        <div>
+            <h1 style="text-align: center">
+                <%=provider.name%>
+            </h1>
+        </div>
+        <div class="row">
+            <% assets.forEach(function(asset){%>
+                <div class="col-4">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title"><%=asset.title%></h5>
+                            <p><b>Duration: </b><%=asset.durationInSeconds%> <small>seconds</small></p>
+                            <a href="/watch/<%=asset.mediaId%>" class="btn btn-primary">Watch Now!</a>
+                        </div>
+                    </div>
+                </div>
+            <%})%>
+        </div>
+    </div> 
+
+</body>
+
+</html>

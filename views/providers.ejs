@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <%- include('partials/head') %>
+
+  <body>
+
+    <%- include('partials/nav') %>    
+
+  <div class="row">
+    <% providers.forEach(function(provider){%>
+      <div class="col-4">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title"><%=provider.name%></h5>
+            <p class="card-text">Watch your favourite penguin flavoured shows on <%=provider.name%>!</p>
+            <a href="/providerPage/<%=provider.id%>" class="btn btn-primary">Watch Now!</a>
+          </div>
+        </div>
+      </div>
+    <%})%>
+  </div>
+
+  
+  </body>
+</html>
