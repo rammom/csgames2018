@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <%- include('partials/head') %>
+    <body>
+        <%- include('partials/nav') %>
+
+        <h1 style="text-align: center">'<%=query%>'</h1>
+        <% assets.forEach(function(asset){%>
+                <div class="col-4">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title"><%=asset.title%></h5>
+                            <p><b>Duration: </b><%=asset.durationInSeconds%> <small>seconds</small></p>
+                            <%if(asset.able){%>
+                            <a href="/watch/<%=asset.mediaId%>" class="btn btn-primary bg-dark" style="color:#f7d138;border-color: #000">Watch Now!</a>                                
+                            <%}else{%>
+                                <small>Not available at this time</small>
+                                <a href="/watch/<%=asset.mediaId%>" class="btn btn-primary bg-dark disabled" style="color:#f7d138;border-color: #000">Watch Now!</a>
+                            <%}%>
+                        </div>
+                    </div>
+                </div>
+            <%})%>
+        
+    </body>
+</html>

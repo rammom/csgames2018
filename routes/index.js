@@ -30,7 +30,7 @@ router.get('/providerPage/:ID', function (req, res, next) {
   });
   res.render('providerPage', { assets: newAssets, provider: prov });
 });
-router.get('/watch/:ID', function(req, res, render){
+router.get('/watch/:ID', function(req, res, next){
   Program.assets.forEach(function(asset){
     if (asset.mediaId == req.params.ID){
       var str = "https://www.youtube.com/embed/" + req.params.ID;
@@ -38,6 +38,33 @@ router.get('/watch/:ID', function(req, res, render){
       res.render('videoPage', {link: str});
     }
   });
+});
+
+router.post('/search', function(req,res,next){
+  var newAssets = [];
+  var query = req.body.query;
+  for (var i = 0; i < Program.assets.length; i++){
+    var asset = Program.assets[i];
+    var pushed = false;
+    for (var j = 0 ; j < Program.providers.length; j++){
+      var provider = Program.providers.length;
+      if (provider.id == assets.providerId){
+        if (provider.name.toUpperCase().includes(query.toUpperCase)){
+          newAssets.push(asset);
+          pushed = true;
+          break;
+        }
+      }
+    }
+    if (pushed){
+      continue;
+    }
+    if (asset.title.toUpperCase() == query.toUpperCase()){
+      newAssets.push(asset);
+      continue;
+    }
+  }
+  res.render('searchPage', {assets: newAssets, query: query});
 });
 
 module.exports = router;
