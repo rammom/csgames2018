@@ -1,7 +1,7 @@
 
 # CS Games 2018
 ## Web Development Competition
-###### 3rd place winners out of 28 participating teams
+ 3rd place winners out of 28 participating teams
 
 Contest requirements can be found at [This trello page](https://trello.com/b/pT20udUF/csgames-bell-2018-user-stories-final-en-version)
 If the above link is down, the trello export is saved in data.json
